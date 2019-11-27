@@ -128,7 +128,7 @@ func FLBPluginFlushCtx(ctx, data unsafe.Pointer, length C.int, tag *C.char) int 
 
 func go_routine() {
 	for {
-		logrus.Info("plugin: go-routine is running...")
+		fmt.Println("plugin: go-routine is running...")
 		time.Sleep(1 * time.Second)
 	}
 }
