@@ -101,8 +101,7 @@ func FLBPluginFlushCtx(ctx, data unsafe.Pointer, length C.int, tag *C.char) int 
 	fluentTag := C.GoString(tag)
 	logrus.Debugf("[firehose %d] Found logs with tag: %s\n", firehoseOutput.PluginID, fluentTag)
 
-	logrus.Warn("[firehose %d] About to sleep", firehoseOutput.PluginID)
-	time.Sleep(1 * time.Minute)
+	logrus.Warn("[firehose %d] About to start go-routine", firehoseOutput.PluginID)
 
 	for {
 		// Extract Record
@@ -125,6 +124,13 @@ func FLBPluginFlushCtx(ctx, data unsafe.Pointer, length C.int, tag *C.char) int 
 	logrus.Debugf("[firehose %d] Processed %d events with tag %s\n", firehoseOutput.PluginID, count, fluentTag)
 
 	return output.FLB_OK
+}
+
+func go_routine() {
+	for {
+		logrus.Info("plugin: go-routine is running...")
+		time.Sleep(10 * time.Second)
+	}
 }
 
 //export FLBPluginExit
