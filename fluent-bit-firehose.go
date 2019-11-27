@@ -25,6 +25,7 @@ import (
 )
 import (
 	"fmt"
+	"time"
 )
 
 var (
@@ -99,6 +100,9 @@ func FLBPluginFlushCtx(ctx, data unsafe.Pointer, length C.int, tag *C.char) int 
 	firehoseOutput := getPluginInstance(ctx)
 	fluentTag := C.GoString(tag)
 	logrus.Debugf("[firehose %d] Found logs with tag: %s\n", firehoseOutput.PluginID, fluentTag)
+
+	logrus.Warn("[firehose %d] About to sleep", firehoseOutput.PluginID)
+	time.Sleep(1 * time.Minute)
 
 	for {
 		// Extract Record
