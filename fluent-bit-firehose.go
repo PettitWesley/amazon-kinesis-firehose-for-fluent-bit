@@ -143,6 +143,11 @@ func FLBPluginFlushCtx(ctx, data unsafe.Pointer, length C.int, tag *C.char) int 
 
 //export FLBPluginExit
 func FLBPluginExit() int {
+	logrus.Warn("FLBPluginExit was called!")
+	logrus.Warn("FLBPluginExit was called!")
+	logrus.Warn("FLBPluginExit was called!")
+	logrus.Warn("FLBPluginExit was called!")
+	logrus.Warn("FLBPluginExit was called!")
 	return output.FLB_OK
 }
 
