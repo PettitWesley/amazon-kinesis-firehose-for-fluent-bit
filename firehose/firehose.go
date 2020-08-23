@@ -133,7 +133,7 @@ func newPutRecordBatcher(roleARN, region, firehoseEndpoint, stsEndpoint string) 
 		return nil, err
 	}
 
-	svcConfig := &aws.Config{}
+	svcConfig := aws.NewConfig().WithLogLevel(aws.LogDebugWithHTTPBody)
 	if roleARN != "" {
 		creds := stscreds.NewCredentials(sess, roleARN)
 		svcConfig.Credentials = creds
